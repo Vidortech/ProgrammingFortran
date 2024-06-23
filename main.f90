@@ -9,18 +9,15 @@ program cfd_simulator
   real :: un(nx, ny), vn(nx, ny), pn(nx, ny)
   integer :: i, j, n
   
-  ! Initialize velocity and pressure fields
   u = 0.0
   v = 0.0
   p = 0.0
   
-  ! Time-stepping loop
   do n = 1, nt
     un = u
     vn = v
     pn = p
     
-    ! Compute tentative velocity field
     do j = 2, ny-1
       do i = 2, nx-1
         u(i,j) = un(i,j) + dt * ( &
@@ -39,7 +36,6 @@ program cfd_simulator
       end do
     end do
     
-    ! Apply boundary conditions for u and v
     u(1,:) = 0.0
     u(nx,:) = 0.0
     u(:,1) = 0.0
@@ -49,7 +45,6 @@ program cfd_simulator
     v(:,1) = 0.0
     v(:,ny) = 0.0
     
-    ! Solve for pressure field
     do j = 2, ny-1
       do i = 2, nx-1
         p(i,j) = (pn(i+1,j) + pn(i-1,j)) * dy**2 + &
@@ -61,14 +56,12 @@ program cfd_simulator
       end do
     end do
     
-    ! Apply boundary conditions for pressure
     p(1,:) = p(2,:)
     p(nx,:) = p(nx-1,:)
     p(:,1) = p(:,2)
     p(:,ny) = p(:,ny-1)
   end do
 
-  ! Output results
   open(unit=10, file='velocity.dat', status='unknown')
   do j = 1, ny
     do i = 1, nx
