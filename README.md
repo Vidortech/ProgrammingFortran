@@ -39,9 +39,11 @@ O código é dividido nas seguintes partes principais:
     make
     ```
     `Gfortran:`
-    ```gfortran main.f90 -o main.x```
+    ```
+   gfortran main.f90 -o main.x
+    ```
 
-3. Execute o programa:
+4. Execute o programa:
     ```sh
     ./main.x
     ```
