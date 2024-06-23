@@ -34,11 +34,14 @@ O código é dividido nas seguintes partes principais:
     ```
 
 2. Compile o código:
+   
    `Makefile:`  
     ```sh
     make
     ```
-    `Gfortran:`
+    `
+   Gfortran:
+   `
     ```
    gfortran main.f90 -o main.x
     ```
